@@ -1,8 +1,10 @@
 txtFileRows = [];
-curRow = 0;
+curRowCount = 0;
 
 quizType = "New";
-results = "None";
+results = [];
+
+resultCount = 0;
 
 
 document.getElementById('fname').onchange = function(){
@@ -30,26 +32,61 @@ document.getElementById('fname').onchange = function(){
 function inStream() {
   // If quiz type is the first thing written in the given text file
   if (txtFileRows[0] == "Quiz Type:") {
-    curRow++;
-    // The next line should tell us the quiz type
-    if (txtFileRows[1] == "Rating Scale") {
-      curRow++;
-        console.log("Confirmed");
-        quizType = txtFileRows[1];
-    }  // End inner if
-    // Check the following lines until more text is found
-    var tempRow = curRow;
-    // While the next line is empty increment to check the next line
-    while (txtFileRows[tempRow].length == 0) {
-      tempRow++;
-    }  // End while
+    curRowCount++;
+    // The next non-empty line should tell us the quiz type
+    getNextNonEmptyRow(curRowCount);
+    console.log(curRowCount);
+    selectQuizType();
+
+    getNextNonEmptyRow(curRowCount);
+    console.log(curRowCount);
     // If the next line is Results: the program can continue
-    if (txtFileRows[tempRow] == "Results:") {
-      results = txtFileRows[tempRow];
-      curRow = tempRow;
+    if (txtFileRows[curRowCount] == "Results:") {
+      curRowCount++;
+      getNextNonEmptyRow(curRowCount);
+      console.log(curRowCount);
+      setResults();
     }  // End inner if
 
-
+    console.log(resultCount);
   }  // End outer if
 
 }  // End in stream function
+
+function selectQuizType() {
+  // The next line should tell us the quiz type
+  if (txtFileRows[curRowCount] == "Rating Scale") {
+    console.log("Quiz type is ", txtFileRows[curRowCount]);
+    quizType = txtFileRows[curRowCount];
+    curRowCount++;
+  }  // End inner if
+  else {
+    console.log("Undefined or mispelled quiz type.");
+  }  // End else
+}  // end selectQuizType
+
+function setResults() {
+  console.log("set result called")
+  resultCount = parseInt(txtFileRows[curRowCount]);
+  curRowCount++;
+  console.log("Result count", resultCount);
+  for(var i = 0; i < resultCount; i++) {
+    getNextNonEmptyRow(curRowCount);
+    console.log("Current row count: ", curRowCount);
+    console.log("Result ", i, " is ", txtFileRows[curRowCount])
+    results[i] = txtFileRows[curRowCount];
+    console.log(results[i]);
+    curRowCount++;
+  }
+}  // End set results
+
+
+
+function getNextNonEmptyRow() {
+  var tempRowCount = curRowCount;
+  while (txtFileRows[tempRowCount].length == 0) {
+    tempRowCount++;
+  }
+  curRowCount = tempRowCount;
+  return curRowCount;
+}

@@ -2,12 +2,21 @@ Quiz Type:
 Rating Scale
 
 Results:
+4
+Result 1
+Result 2
+Result 3
+Result 4
+
+Options:
+4
 Option 1
 Option 2
 Option 3
 Option 4
 
 Attributes:
+4
 Attribute A
 Attribute B
 Attribute C
