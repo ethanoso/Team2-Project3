@@ -1,0 +1,74 @@
+body{
+    background: no-repeat center fixed;
+    background-image: linear-gradient(to bottom, rgb(255, 181, 132),  rgb(202, 168, 155));
+    background-size: cover;
+}
+.header{
+    position: sticky;
+    top: 0;
+    height: 75px;
+    background-color: rgb(228, 161, 117);
+    left: 50%;
+    margin-top: -10px;
+    margin-bottom: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    z-index: 1;
+}
+.header h1{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10%;
+}
+.header h6{
+    margin: 0;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+.header a{
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.quizzes-container{
+    display: grid;
+    position: relative;
+    left: 50%;
+    max-width: 60%;
+    transform: translateX(-50%);
+}
+.quizzes-container a{
+    text-decoration: none;
+    display: flex;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    font-size: large;
+    height: 100px;
+    width: max-content;
+    margin: 5px;
+    position: relative;
+    border-radius: 10px;
+    background-color: rgba(216, 189, 182, 0.966);
+    transition: all ease-in-out 250ms;
+}
+.quizzes-container a:hover {
+    background-color: rgba(255, 255, 255, 0.795);
+}
+.quizzes-container a img{
+    border-radius: 10px;
+}
+.quizzes-container a i{
+    height: 100%;
+    width: max-content;
+    text-align: left;
+}
+.quizzes-container a text{
+    max-width: 500px;
+    display:inline-flex;
+    color: brown;
+    padding: 10px;
+    color: black;
+}
