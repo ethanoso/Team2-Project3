@@ -1,92 +1,197 @@
-txtFileRows = [];
-curRowCount = 0;
+import question from "./question.js"
 
-quizType = "New";
-results = [];
+export class quiz {
+  constructor(type, fsRows, curRowIndex) {
+    this.type = type;
+    this.fsRows = fsRows;
 
-resultCount = 0;
+    this.curRowIndex = curRowIndex;
+
+    this.results = [];
+    this.resultCount = 0;
+
+    this.resultAttributeRating = [];
+
+    this.attributes = [];
+    this.attributeCount = 0;
+
+    this.questions = [];
+    this.questionCount = 0;
+
+    this.optionCount = 0;
+    this.options = [];
 
 
-document.getElementById('fname').onchange = function(){
+    readResults(resultCount) {
+      this.resultCount = resultCount;
+      curRowIndex++;
+      getNextNonEmptyRow(curRowIndex);
+      for (var i = 0; i < resultCount; i++) {
+        this.results[i] = fsRows[curRowIndex];
+        curRowIndex++;
+        getNextNonEmptyRow(curRowIndex);
+      }
+    }  // End readResults
 
-  var fl = this.files[0];
+    readAttributes(attributeCount) {
+      this.attributeCount = attributeCount;
+      curRowIndex++;
+      getNextNonEmptyRow(curRowIndex);
+      for (var i = 0; i < attributeCount; i++) {
+        this.attributes[i] = this.fsRows[curRowIndex];
+        this.curRowIndex++;
+        getNextNonEmptyRow(this.curRowIndex);
+      }  // End for
+    }  // End readAttributes
 
-  var reader = new FileReader();
-  reader.onload = function(progressEvent){
-    // Entire file
-    console.log(this.result);
+    readResultAttributeRatings() {
+      curRowIndex++;
+      getNextNonEmptyRow(curRowIndex);
+      for(var i = 0; i < resultCount) {
+        this.resultAttributeRating[i] = this.fsRows[curRowIndex];
+        this.curRowIndex++;
+        getNextNonEmptyRow(this.curRowIndex);
+      }  // End for
+    }  // end readResultAttributeRatings
 
-    // By allrows
-    var allrows = this.result.split('\n');
-    for(var row = 0; row < allrows.length; row++){
-      txtFileRows[row] = allrows[row];
-      console.log(txtFileRows[row]);
-    }
-    inStream();
-    console.log(quizType);
-    console.log(results)
-  };
-  reader.readAsText(fl);
-};
+    readQuestions(questionCount) {
+      this.questionCount = questionCount;
+      curRowIndex++;
+      getNextNonEmptyRow(curRowIndex);
+      for(var i = 0; i < questionCount) {
+        this.questions[i] = this.fsRows[curRowIndex];
+        this.curRowIndex++;
+        getNextNonEmptyRow(this.curRowIndex);
+      }  // End for
+    }  // End readQuestions
 
-function inStream() {
-  // If quiz type is the first thing written in the given text file
-  if (txtFileRows[0] == "Quiz Type:") {
-    curRowCount++;
-    // The next non-empty line should tell us the quiz type
-    getNextNonEmptyRow(curRowCount);
-    console.log(curRowCount);
-    selectQuizType();
+    readOptions(optionCount) {
+      this.optionCount = optionCount;
+      curRowIndex++;
+      getNextNonEmptyRow(curRowIndex);
+      for(var i = 0; i < optionCount) {
+        this.options[i] = this.fsRows[curRowIndex];
+        this.curRowIndex++;
+        getNextNonEmptyRow(this.curRowIndex);
+      }  // End for
+    }  // End read options
 
-    getNextNonEmptyRow(curRowCount);
-    console.log(curRowCount);
-    // If the next line is Results: the program can continue
-    if (txtFileRows[curRowCount] == "Results:") {
-      curRowCount++;
-      getNextNonEmptyRow(curRowCount);
-      console.log(curRowCount);
-      setResults();
+    getNextNonEmptyRow() {
+      var i = curRowIndex;
+      while (fsRows[i].length == 0) {
+        i++;
+      }
+      curRowIndex = i;
+      return curRowIndex;
+    }  // end getNextNonEmptyRow
+
+  }  // End quiz constructor
+}  // End quiz class
+
+export class ratingScale extends quiz {
+  constructor(type, fsRows, curRowIndex) {
+    super(type, fsRows, curRowIndex);
+    this.options = [];
+    makeQuiz();
+  }  // End constructor
+  readResults(resultCount) {
+    super.readResults(resultCount);
+  }
+  readAttribute(attributeCount) {
+    super.readAttribute(attributeCount);
+  }
+  readResultAttributeRatings() {
+    super.readResultAttributeRatings();
+  }
+  readQuestions(questionCount) {
+    super.readQuestions(questionCount);
+  }
+  readOptions(optionCount) {
+    super.readOptions(optionCount);
+  }
+  getNextNonEmptyRow() {
+    super.getNextNonEmptyRow();
+  }
+
+  makeQuiz() {
+    // Start on the next non-empty line of text
+    getNextNonEmptyRow();
+
+    // Results are listed first for a rating scale quiz
+    if (this.fsRows[this.curRowIndex] == "Results:") {
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+      console.log(curRowIndex);
+      this.resultCount = parseInt(this.fsRows[curRowIndex]);
+      readResults(this.resultCount);
+      this.curRowIndex++;
+      getNextNonEmptyRow();
     }  // End inner if
+    else {
+      console.log("Results should be the first thing listed after your quiz type");
+    }  // End else
 
-    console.log(resultCount);
-  }  // End outer if
+    // Options are listed second for a rating scale quiz (all questions have same options)
+    if (this.fsRows[this.curRowIndex] == "Options:") {
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+      console.log(curRowIndex);
+      this.optionCount = parseInt(this.fsRows[curRowIndex]);
+      readOptions(this.optionCount);
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+    }  // end if
+    else {
+      console.log("Options should be the next thing listed after results");
+    }  // end else
 
-}  // End in stream function
+    // Attributes are listed third for a rating scale quiz
+    if (this.fsRows[this.curRowIndex] == "Attributes:") {
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+      console.log(curRowIndex);
+      this.attributeCount = parseInt(this.fsRows[curRowIndex]);
+      readOptions(this.optionCount);
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+    }  // end if
+    else {
+      console.log("Attributes should be the next things listed after results");
+    }  // end else
 
-function selectQuizType() {
-  // The next line should tell us the quiz type
-  if (txtFileRows[curRowCount] == "Rating Scale") {
-    console.log("Quiz type is ", txtFileRows[curRowCount]);
-    quizType = txtFileRows[curRowCount];
-    curRowCount++;
-  }  // End inner if
-  else {
-    console.log("Undefined or mispelled quiz type.");
-  }  // End else
-}  // end selectQuizType
+    // Result attribute ratings are listed afer attributes for a rating scale quiz
+    // Attributes are listed third for a rating scale quiz
+    if (this.fsRows[this.curRowIndex] == "Result Attribue Ratings:") {
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+      console.log(curRowIndex);
+      readResultAttributeRatings()
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+    }  // end if
+    else {
+      console.log("Result attribute ratings should be the next thing listed after reults");
+    }  // end else
 
-function setResults() {
-  console.log("set result called")
-  resultCount = parseInt(txtFileRows[curRowCount]);
-  curRowCount++;
-  console.log("Result count", resultCount);
-  for(var i = 0; i < resultCount; i++) {
-    getNextNonEmptyRow(curRowCount);
-    console.log("Current row count: ", curRowCount);
-    console.log("Result ", i, " is ", txtFileRows[curRowCount])
-    results[i] = txtFileRows[curRowCount];
-    console.log(results[i]);
-    curRowCount++;
-  }
-}  // End set results
+    // Questions are listed last for a rating scale quiz
+    if (this.fsRows[this.curRowIndex] == "Questions:") {
+      // Construct a question object for each question
+      for (var i = 0; i < this.questionCount; i++) {
+        this.curRowIndex++;
+        getNextNonEmptyRow();
+        console.log(curRowIndex);
+        addQuestion(this.fsRows[curRowIndex], i);
+      }  // End for
+      this.curRowIndex++;
+      getNextNonEmptyRow();
+    }  // end if
+    else {
+      console.log("Questions should be the last thing listed after Result Attribute Ratings");
+    }  // end else
+  }  // End makeQuiz
 
+  addQuestion(prompt, questionIndex) {
+    questions[questionIndex] = question("Rating Scale:", prompt, this.options);
+  }  // End addQuestion
 
-
-function getNextNonEmptyRow() {
-  var tempRowCount = curRowCount;
-  while (txtFileRows[tempRowCount].length == 0) {
-    tempRowCount++;
-  }
-  curRowCount = tempRowCount;
-  return curRowCount;
-}
+}  // End subclass ratingScale
