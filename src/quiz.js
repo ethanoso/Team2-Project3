@@ -22,7 +22,7 @@ export class quiz {
     this.options = [];
 
 
-    readResults(resultCount) {
+    readResults(resultCount); {
       this.resultCount = resultCount;
       curRowIndex++;
       getNextNonEmptyRow(curRowIndex);
@@ -33,7 +33,7 @@ export class quiz {
       }
     }  // End readResults
 
-    readAttributes(attributeCount) {
+    readAttributes(attributeCount); {
       this.attributeCount = attributeCount;
       curRowIndex++;
       getNextNonEmptyRow(curRowIndex);
@@ -44,46 +44,46 @@ export class quiz {
       }  // End for
     }  // End readAttributes
 
-    readResultAttributeRatings() {
+    readResultAttributeRatings(); {
       curRowIndex++;
       getNextNonEmptyRow(curRowIndex);
-      for(var i = 0; i < resultCount) {
+      for(var i = 0; i < resultCount; i++) {
         this.resultAttributeRating[i] = this.fsRows[curRowIndex];
         this.curRowIndex++;
         getNextNonEmptyRow(this.curRowIndex);
       }  // End for
     }  // end readResultAttributeRatings
 
-    readQuestions(questionCount) {
+    readQuestions(questionCount); {
       this.questionCount = questionCount;
       curRowIndex++;
       getNextNonEmptyRow(curRowIndex);
-      for(var i = 0; i < questionCount) {
+      for(var i = 0; i < questionCount; i++) {
         this.questions[i] = this.fsRows[curRowIndex];
         this.curRowIndex++;
         getNextNonEmptyRow(this.curRowIndex);
       }  // End for
     }  // End readQuestions
 
-    readOptions(optionCount) {
+    readOptions(optionCount); {
       this.optionCount = optionCount;
       curRowIndex++;
       getNextNonEmptyRow(curRowIndex);
-      for(var i = 0; i < optionCount) {
+      for(var i = 0; i < optionCount; i++) {
         this.options[i] = this.fsRows[curRowIndex];
         this.curRowIndex++;
         getNextNonEmptyRow(this.curRowIndex);
       }  // End for
     }  // End read options
 
-    getNextNonEmptyRow() {
+    getNextNonEmptyRow(); {
       var i = curRowIndex;
       while (fsRows[i].length == 0) {
         i++;
       }
       curRowIndex = i;
       return curRowIndex;
-    }  // end getNextNonEmptyRow
+    } // end getNextNonEmptyRow
 
   }  // End quiz constructor
 }  // End quiz class

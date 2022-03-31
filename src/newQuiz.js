@@ -1,5 +1,4 @@
-import quiz from "./quiz.js";
-import ratingScale from "./quiz.js"
+import ratingScale from "./quiz.js";
 
 txtFileRows = [];
 curRowCount = 0;
@@ -45,15 +44,15 @@ function inStream() {
     // Determines the quiz type and adds a quiz of that instance to quiz array
     selectQuizType();
 
-    //getNextNonEmptyRow(curRowCount);
-    //console.log(curRowCount);
+    getNextNonEmptyRow(curRowCount);
+    console.log(curRowCount);
     // If the next line is Results: the program can continue
-    //if (txtFileRows[curRowCount] == "Results:") {
-      //curRowCount++;
-      //getNextNonEmptyRow(curRowCount);
-      //console.log(curRowCount);
-      //setResults();
-    //}  // End inner if
+    if (txtFileRows[curRowCount] == "Results:") {
+      curRowCount++;
+      getNextNonEmptyRow(curRowCount);
+      console.log(curRowCount);
+      setResults();
+    }  // End inner if
 
     console.log(resultCount);
   }  // End outer if
