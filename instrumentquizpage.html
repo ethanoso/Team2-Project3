@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Quiz</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+        <div class="header">
+            <h1>QUIZ MANIA</h1>
+            <h6>Produced by Team2</h6>
+            <a href="index.html">Home Page</a>
+        </div>
+        <div class="quiz-container">
+            <div class="question">
+                Question 1: Which KU school do you belong to?
+								<br>1) Architecture & design
+								<br>2) Arts
+								<br>3) Business
+								<br>4) Education & Human Sciences
+								<br>5) Engineering
+								<br>6) Journalism & Mass Communications
+								<br>7) Health Professions
+								<br>8) Law
+								<br>9) Liberal Arts & Sciences
+								<br>10) Medicine
+								<br>11) Music
+								<br>12) Nursing
+								<br>13) Pharmacy
+								<br>14) Professional Studies
+								<br>15) Public Affairs and Administration
+								<br>16) Social Welfare
+								<br>17) Other
+            </div>
+
+            <div class="slide1container">
+                <input type="range" min="1" max="1700" value="1" class="slider" id="myRange1">
+                <p>Value: <span id="slideValue1"></span></p>
+								<script>
+                    var slider1 = document.getElementById("myRange1");
+                    var output1 = document.getElementById("slideValue1");
+                    output1.innerHTML = slider1.value;
+                    slider1.oninput = function() {
+                        output1.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question 2: What is your favorite music genre?
+								<br>1) Classical
+								<br>2) Rock
+								<br>3) Country
+								<br>4) Jazz
+								<br>5) Hip Hop
+								<br>6) Rap
+								<br>7) Other
+            </div>
+
+            <div class="slide2container">
+                <input type="range" min="1" max="700" value="1" class="slider" id="myRange2">
+                <p>Value: <span id="slideValue2"></span></p>
+                <script>
+                    var slider2 = document.getElementById("myRange2");
+                    var output2 = document.getElementById("slideValue2");
+                    output2.innerHTML = slider2.value;
+                    slider2.oninput = function() {
+                        output2.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question 3: What is your zodiac sign?
+								<br>1) Aries (March 21 - April 20)
+								<br>2) Taurus (April 21 - May 20)
+								<br>3) Gemini (May 21 - June 20)
+								<br>4) Cancer (June 21 - July 22)
+								<br>5) Leo (July 23 - August 22)
+								<br>6) Virgo (August 23 - September 22)
+								<br>7) Libra (September 23 - October 22)
+								<br>8) Scorpio (October 23 - November 22)
+								<br>9) Sagittarius (November 23 - December 21)
+								<br>10) Capricorn (December 22 - January 19)
+								<br>11) Aquarius (January 20 - February 19)
+								<br>12) Pisces (February 20 - March 20)
+            </div>
+
+
+            <div class="slide3container">
+                <input type="range" min="1" max="1200" value="1" class="slider" id="myRange3">
+                <p>Value: <span id="slideValue3"></span></p>
+                <script>
+                    var slider3 = document.getElementById("myRange3");
+                    var output3 = document.getElementById("slideValue3");
+                    output3.innerHTML = slider3.value;
+                    slider3.oninput = function() {
+                        output3.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question 4: Which 16-personality type do you best fall in? (Type descriptions can be found at 16personalities.com/personality-types)
+								<br>1) INTJ
+								<br>2) INTP
+								<br>3) ENTJ
+								<br>4) ENTP
+								<br>5) INFJ
+								<br>6) INFP
+								<br>7) ENFJ
+								<br>8) ENFP
+								<br>9) ISTJ
+								<br>10) ISFJ
+								<br>11) ESTJ
+								<br>12) ESFJ
+								<br>13) ISTP
+								<br>14) ISFP
+								<br>15) ESTP
+								<br>16) ESFP
+            </div>
+
+            <div class="slide4container">
+                <input type="range" min="1" max="1600" value="1" class="slider" id="myRange4">
+                <p>Value: <span id="slideValue4"></span></p>
+                <script>
+                    var slider4 = document.getElementById("myRange4");
+                    var output4 = document.getElementById("slideValue4");
+                    output4.innerHTML = slider4.value;
+                    slider4.oninput = function() {
+                        output4.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question 5: On a scale of 1 to 5, how socially active are you outside of school / band?
+            </div>
+            <div class="slide5container">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange5">
+                <p>Value: <span id="slideValue5"></span></p>
+                <script>
+                    var slider5 = document.getElementById("myRange5");
+                    var output5 = document.getElementById("slideValue5");
+                    output5.innerHTML = slider5.value;
+                    slider5.oninput = function() {
+                        output5.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+						<div class="question">
+                Question 6: On a scale of 1 to 5 (5 being most often), how long do you practice?
+            </div>
+            <div class="slide6container">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange6">
+                <p>Value: <span id="slideValue6"></span></p>
+                <script>
+                    var slider6 = document.getElementById("myRange6");
+                    var output6 = document.getElementById("slideValue6");
+                    output6.innerHTML = slider6.value;
+                    slider6.oninput = function() {
+                        output6.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+        </div>
+
+
+				<script type="text/javascript" src="instrumentquizpage.js"></script>
+
+
+        <form action="instrumentquizresult.html" method="POST">
+
+					<input type="hidden" id="value1" value="0" />
+					<input type="hidden" id="value2" value="2" />
+					<input type="hidden" id="value3" value="3" />
+					<input type="hidden" id="value4" value="4" />
+					<input type="hidden" id="value5" value="5" />
+					<input type="hidden" id="value6" value="5" />
+
+					<input type="hidden" id="instrument" value="0" />
+
+
+
+					<button class="submit" onclick="handleSubmit( output1.innerHTML, output2.innerHTML, output3.innerHTML, output4.innerHTML, output5.innerHTML, output6.innerHTML)">View Results</>
+        </form>
+    </body>
+</html>
