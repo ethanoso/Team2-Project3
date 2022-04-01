@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Quiz</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+        <div class="header">
+            <h1>QUIZ MANIA</h1>
+            <h6>Produced by Team2</h6>
+            <a href="index.html">Home Page</a>
+        </div>
+        <div class="quiz-container">
+            <div class="question">
+                Question: On a scale of 1 to 5
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange1">
+                <p>Value: <span id="value1"></span></p>
+                <script>
+                    var slider1 = document.getElementById("myRange1");
+                    var output1 = document.getElementById("value1");
+                    output1.innerHTML = slider1.value;
+                    slider1.oninput = function() {
+                        output1.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question: On a scale of 1 to 5
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange2">
+                <p>Value: <span id="value2"></span></p>
+                <script>
+                    var slider2 = document.getElementById("myRange2");
+                    var output2 = document.getElementById("value2");
+                    output2.innerHTML = slider2.value;
+                    slider2.oninput = function() {
+                        output2.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question: On a scale of 1 to 5
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange3">
+                <p>Value: <span id="value3"></span></p>
+                <script>
+                    var slider3 = document.getElementById("myRange3");
+                    var output3 = document.getElementById("value3");
+                    output3.innerHTML = slider3.value;
+                    slider3.oninput = function() {
+                        output3.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question: On a scale of 1 to 5
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange4">
+                <p>Value: <span id="value4"></span></p>
+                <script>
+                    var slider4 = document.getElementById("myRange4");
+                    var output4 = document.getElementById("value4");
+                    output4.innerHTML = slider4.value;
+                    slider4.oninput = function() {
+                        output4.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+
+            <div class="question">
+                Question: On a scale of 1 to 5
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="500" value="1" class="slider" id="myRange5">
+                <p>Value: <span id="value5"></span></p>
+                <script>
+                    var slider5 = document.getElementById("myRange5");
+                    var output5 = document.getElementById("value5");
+                    output5.innerHTML = slider5.value;
+                    slider5.oninput = function() {
+                        output5.innerHTML = Math.ceil(this.value/100);
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div>
+            <button class="submit"><a href="quizresult.html">View Results</a></button>    
+        </div>
+        
+
+	</body>
+</html>
