@@ -1,3 +1,13 @@
+/*
+instrumentquizpage.js
+
+class responsible for handling instrument quiz submission.
+*/
+
+/*
+handleSubmit() takes 6 scores from instrument quiz, and stores the instrument using the getInstrument() function.
+handleSubmit() was modified from the following published code: https://github.com/RajnishKatharotiya/share-data-between-html-pages
+*/
 function handleSubmit (n1, n2, n3, n4, n5, n6) {
 
   value1 = getInstrument(n1, n2, n3, n4, n5, n6);
@@ -9,6 +19,9 @@ function handleSubmit (n1, n2, n3, n4, n5, n6) {
     return;
 }
 
+/*
+getInstrument() takes 6 arguments, the scores from instrument quiz, and returns the instrument output.
+*/
 function getInstrument(n1, n2, n3, n4, n5, n6)
 {
   num = parseInt(n1) + parseInt(n2) + parseInt(n3) + parseInt(n4) + parseInt(n5) - parseInt(n6);
