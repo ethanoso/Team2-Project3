@@ -1,3 +1,8 @@
+/*
+styles.css
+
+styles class for defining webpage front-end, which is utilized on every webpage.
+*/
 body{
     background: no-repeat center fixed;
     background-image: linear-gradient(to bottom, rgb(255, 181, 132),  rgb(202, 168, 155));
